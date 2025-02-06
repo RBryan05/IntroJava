@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
     
     private static final String DB_DRIVER = "com.mysql.jdbc.Driver";  
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/w3schools";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/";
     
     private final static String DB = "puntoventa";  
     private static final String DB_USERNAME = "root";
@@ -24,7 +24,7 @@ public class Conexion {
     Connection conectar;
     public static Conexion singleConnection;
     
-    private Conexion() {
+    public Conexion() {
         this.conectar = null;
     }
     
@@ -47,5 +47,13 @@ public class Conexion {
             singleConnection = new Conexion();
         }
         return singleConnection;
+    }
+    
+    public void desconectar(){
+        try{
+            this.conectar.close();
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }
 }
