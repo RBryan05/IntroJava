@@ -21,10 +21,10 @@ public class Conexion {
     private static final String DB_USERNAME = "root";
     private static final String DB_PASSWORD = "4321";
     
-    Connection conectar;
+    public Connection conectar;
     public static Conexion singleConnection;
     
-    public Conexion() {
+    private Conexion() {
         this.conectar = null;
     }
     

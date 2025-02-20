@@ -9,13 +9,13 @@ package database;
  * @author Alexis Rauda
  */
 public class pruebaConexion {
-    public static void main (String[] args){
-        Conexion con = new Conexion();
-        con.conectar();
-        if(con.conectar != null){
-            System.out.println(" Conectado ");
+    public static void main(String[] args){
+        Conexion con = Conexion.getInstance(); // Use static method
+        con.conectar(); // Connect to the database
+        if(con.conectar != null){ // Check if connection is successful
+            System.out.println("Conectado");
         }else{
-            System.out.println(" SIn conexion ");
+            System.out.println("Sin conexion");
         }
-    }  
+    }
 }
