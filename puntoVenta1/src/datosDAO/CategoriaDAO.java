@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package database.datos;
+package datosDAO;
 
 import database.Conexion;
 import datos.interfaces.CRUDGeneralInterface;
@@ -73,14 +73,16 @@ public class CategoriaDAO implements CRUDGeneralInterface<Categoria>{
         }
         return resp;
     }
-
-    @Override
-    public boolean update(int id) {
+    
+       @Override
+    public boolean update(Categoria object) {
         resp = false;
         try {
             ps = conectar.conectar().prepareStatement
-        ("Update categoria SET estado=0, where id= ?");
-            ps.setInt(1, id);
+        ("Update categoria SET nombre=?, descripcion =? where id= ?");
+            ps.setString(1, object.getNombre());
+            ps.setString(2, object.getDescripcion());
+            ps.setInt(3, object.getId());
             if(ps.executeUpdate() > 0){
                 resp = true;
                 ps.close();
@@ -91,12 +93,12 @@ public class CategoriaDAO implements CRUDGeneralInterface<Categoria>{
             ps = null;
             conectar.desconectar();
         }
-        return resp;   
+        return resp;
     }
 
-     @Override
+    @Override
     public boolean onVariable(int id) {
-          resp = false;
+       resp = false;
         try {
             ps = conectar.conectar().prepareStatement
         ("Update categoria SET estado=1, where id= ?");
@@ -115,7 +117,7 @@ public class CategoriaDAO implements CRUDGeneralInterface<Categoria>{
     }
 
     @Override
-    public boolean offVaraible(int id) {
+    public boolean offVariable(int id) {
         resp = false;
         try {
             ps = conectar.conectar().prepareStatement
@@ -181,5 +183,4 @@ public class CategoriaDAO implements CRUDGeneralInterface<Categoria>{
         }
         return totalRegistro;
     }
-    
 }
