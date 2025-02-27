@@ -7,7 +7,9 @@ package negocio;
 import datosDAO.CategoriaDAO;
 import entidades.Categoria;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,12 +53,13 @@ public class CategoriaControl {
         return this.tModel;
     }
 
-    public String Insertar(String nombre, String descripcion) {
+    public String Insertar(String nombre, String descripcion, Boolean estado) {
         if (DATOS.exist(nombre)) {
             return "Registro ya existe";
         } else {
             obj.setNombre(nombre);
             obj.setDescripcion(descripcion);
+            obj.setActivo(estado);
             if (DATOS.insert(obj)) {
                 return "OK";
             } else {

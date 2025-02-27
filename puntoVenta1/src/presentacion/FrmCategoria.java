@@ -43,7 +43,7 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
     }
     
     private void mensajeError(String mensaje){
-        JOptionPane.showMessageDialog(this, mensaje, "sistema", JOptionPane.ERROR);
+        JOptionPane.showMessageDialog(this, mensaje, "sistema", JOptionPane.ERROR_MESSAGE);
     }
     
     private void mensajeOK(String mensaje){
@@ -76,6 +76,8 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        chbActivo = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -174,6 +176,10 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
 
         jLabel4.setText("(*) Indica que es obligatorio");
 
+        chbActivo.setText("Activo");
+
+        jLabel5.setText("Estado:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -185,18 +191,22 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
                         .addGap(189, 189, 189))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(chbActivo)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
                                 .addComponent(btnCancelar))
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(txtNombre)
+                            .addComponent(txtDescripcion))))
                 .addGap(97, 97, 97))
         );
         jPanel2Layout.setVerticalGroup(
@@ -208,11 +218,13 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jLabel3)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chbActivo)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,7 +267,7 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
         if(this.accion.equals("editar")){
             
         }else{
-            respuesta = this.CONTROL.Insertar(txtNombre.getText(), txtDescripcion.getText());
+            respuesta = this.CONTROL.Insertar(txtNombre.getText(), txtDescripcion.getText(), chbActivo.isSelected());
             if(respuesta.equals("OK")){
                 this.mensajeOK("Registro Insertado con exito");
                 this.limpiar();
@@ -286,10 +298,12 @@ public class FrmCategoria extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JCheckBox chbActivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
