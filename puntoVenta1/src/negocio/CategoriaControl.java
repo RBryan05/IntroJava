@@ -107,7 +107,6 @@ public class CategoriaControl {
         } else {
             return "No se puede desactivar el registro";
         }
-
     }
 
     public String activar(int id) {
