@@ -82,22 +82,23 @@ public class CategoriaDAO implements CRUDGeneralInterface<Categoria>{
     public boolean update(Categoria object) {
         resp = false;
         try {
-            ps = conectar.conectar().prepareStatement
-        ("Update categoria SET nombre=?, descripcion =? where id= ?");
-            ps.setString(1, object.getNombre());
-            ps.setString(2, object.getDescripcion());
-            ps.setInt(3, object.getId());
-            if(ps.executeUpdate() > 0){
-                resp = true;
-                ps.close();
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }finally{
-            ps = null;
-            conectar.desconectar();
+        ps = conectar.conectar().prepareStatement("UPDATE categoria SET nombre=?, descripcion=?, estado=? WHERE id=?");
+        ps.setString(1, object.getNombre());
+        ps.setString(2, object.getDescripcion());
+        ps.setBoolean(3, object.isActivo());  // El estado debe ir aquí
+        ps.setInt(4, object.getId());  // El ID debe ir al final
+
+        if (ps.executeUpdate() > 0) {
+            resp = true;
         }
-        return resp;
+        ps.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, e.getMessage());
+    } finally {
+        ps = null;
+        conectar.desconectar();
+    }
+    return resp;
     }
 
     @Override

@@ -68,32 +68,37 @@ public class CategoriaControl {
         }
     }
 
-    public String actualizar(int id, String nombre, String nombreAnterior, String descripcion) {
+    public String actualizar(int id, String nombre, String nombreAnterior, String descripcion, Boolean estado) {
 
-        if (nombre.equals(nombreAnterior)) {
+         if (!nombre.equals(nombreAnterior)) {
+            // Primero verificamos si el nombre ya existe en la base de datos
+            if (DATOS.exist(nombre)) {
+                return "El objeto ya existe";
+            }
+            // Si no existe, actualizamos el objeto
             obj.setId(id);
             obj.setNombre(nombre);
             obj.setDescripcion(descripcion);
+            obj.setActivo(estado);
+             
             if (DATOS.update(obj)) {
                 return "OK";
             } else {
                 return "Error al actualizar";
             }
         } else {
-            if (DATOS.exist(nombre)) {
-                return "El objeto ya existe";
+            // Si el nombre no ha cambiado, simplemente actualizamos la descripción
+            obj.setId(id);
+            obj.setNombre(nombre);
+            obj.setDescripcion(descripcion);
+            obj.setActivo(estado);
+             
+            if (DATOS.update(obj)) {
+                return "OK";
             } else {
-                obj.setId(id);
-                obj.setNombre(nombre);
-                obj.setDescripcion(descripcion);
-                if (DATOS.exist(nombre)) {
-                    return "El registro ya existe";
-                } else {
-                    return "Error en la actualizacion";
-                }
+                return "Error en la actualización";
             }
         }
-
     }
 
     public String desactivar(int id) {
