@@ -18,4 +18,5 @@ public interface CRUDGeneralInterface <T> {
     public boolean offVariable( int id);
     public boolean exist(String text);
     public int total();
+    public int getID();
 }

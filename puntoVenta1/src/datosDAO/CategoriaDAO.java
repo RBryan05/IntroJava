@@ -213,4 +213,37 @@ public class CategoriaDAO implements CRUDGeneralInterface<Categoria> {
         }
         return totalRegistro;
     }
+
+    @Override
+    public int getID() {
+        int idMayor = -1; // Valor por defecto en caso de que no haya registros
+
+        try {
+            ps = conectar.conectar().prepareStatement(
+                    "SELECT id FROM categoria ORDER BY id DESC LIMIT 1",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY
+            );
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                idMayor = rs.getInt("id"); // Obtiene el ID más alto
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+            conectar.desconectar();
+        }
+        return idMayor;
+    }
 }
