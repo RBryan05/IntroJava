@@ -101,7 +101,7 @@ public class ArticuloDAO implements CRUDPaginadoInterface<Articulo> {
             ps.setInt(1, object.getCategoriaId());
             ps.setString(2, object.getCodigo());
             ps.setString(3, object.getNombre());
-            ps.setDouble(4, object.getPrecioventa());
+            ps.setDouble(4, object.getPrecioVenta());
             ps.setInt(5, object.getStock());
             ps.setString(6, object.getDescripcion());
             ps.setString(7, object.getImagen());
@@ -134,7 +134,7 @@ public class ArticuloDAO implements CRUDPaginadoInterface<Articulo> {
             ps.setInt(1, object.getCategoriaId());
             ps.setString(2, object.getCodigo());
             ps.setString(3, object.getNombre());
-            ps.setDouble(4, object.getPrecioventa());
+            ps.setDouble(4, object.getPrecioVenta());
             ps.setInt(5, object.getStock());
             ps.setString(6, object.getDescripcion());
             ps.setString(7, object.getImagen());

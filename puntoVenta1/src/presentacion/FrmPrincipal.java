@@ -209,5 +209,4 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
-
 }
