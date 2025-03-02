@@ -72,6 +72,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem2.setText("Articulos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         MnuAlmacen.add(jMenuItem2);
 
         menuBar.add(MnuAlmacen);
@@ -153,6 +158,12 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Escritorio.add(frmCategoria);
         frmCategoria.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        FrmArticulo frmArticulo = new FrmArticulo();
+        Escritorio.add(frmArticulo);
+        frmArticulo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
