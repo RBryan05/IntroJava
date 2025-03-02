@@ -12,21 +12,22 @@ public class Articulo {
 
     private int idArticulo;
     private int categoriaId;
-    private int codigo;
-    private String npmbre;
+    private String codigo;
+    private String nombre;
     private double precioventa;
     private int stock;
     private String descripcion;
+    private String imagen;
     private boolean estado;
 
     public Articulo() {
     }
 
-    public Articulo(int idArticulo, int categoriaId, int codigo, String npmbre, double precioventa, int stock, String descripcion, boolean estado) {
+    public Articulo(int idArticulo, int categoriaId, String codigo, String nombre, double precioventa, int stock, String descripcion, String imagen, boolean estado) {
         this.idArticulo = idArticulo;
         this.categoriaId = categoriaId;
         this.codigo = codigo;
-        this.npmbre = npmbre;
+        this.nombre = nombre;
         this.precioventa = precioventa;
         this.stock = stock;
         this.descripcion = descripcion;
@@ -49,20 +50,20 @@ public class Articulo {
         this.categoriaId = categoriaId;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public String getNpmbre() {
-        return npmbre;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNpmbre(String npmbre) {
-        this.npmbre = npmbre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public double getPrecioventa() {
@@ -89,6 +90,14 @@ public class Articulo {
         this.descripcion = descripcion;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
     public boolean isEstado() {
         return estado;
     }
@@ -99,6 +108,6 @@ public class Articulo {
 
     @Override
     public String toString() {
-        return "Articulo{" + "idArticulo=" + idArticulo + ", categoriaId=" + categoriaId + ", codigo=" + codigo + ", npmbre=" + npmbre + ", precioventa=" + precioventa + ", stock=" + stock + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "Articulo{" + "idArticulo=" + idArticulo + ", categoriaId=" + categoriaId + ", codigo=" + codigo + ", nombre=" + nombre + ", precioventa=" + precioventa + ", stock=" + stock + ", descripcion=" + descripcion + ", imagen=" + imagen + ", estado=" + estado + '}';
     }
 }
