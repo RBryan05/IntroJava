@@ -326,7 +326,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
         String respuesta;
 
         if (this.accion.equals("editar")) {
-            respuesta = this.CONTROL.actualizar(
+            respuesta = this.CONTROL.update(
                     Integer.parseInt(txtId.getText()),
                     txtNombre.getText(),
                     this.nombreAnt,
@@ -346,7 +346,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
                 this.mensajeError(respuesta);
             }
         } else {
-            respuesta = this.CONTROL.Insertar(txtNombre.getText(), txtDescripcion.getText(), chbActivo.isSelected());
+            respuesta = this.CONTROL.insert(txtNombre.getText(), txtDescripcion.getText(), chbActivo.isSelected());
             if (respuesta.equals("OK")) {
                 this.mensajeOK("Registro Insertado con exito");
                 this.limpiar();
