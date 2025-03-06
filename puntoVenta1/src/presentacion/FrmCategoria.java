@@ -4,10 +4,8 @@
  */
 package presentacion;
 
-import java.util.HashSet;
 import javax.swing.JOptionPane;
 import negocio.CategoriaControl;
-import entidades.Categoria;
 import javax.swing.table.TableRowSorter;
 /**
  *

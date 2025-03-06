@@ -325,7 +325,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
 
         String respuesta;
 
-        if (this.accion.equals("editar")) {
+        /*if (this.accion.equals("editar")) {
             respuesta = this.CONTROL.update(
                     Integer.parseInt(txtId.getText()),
                     txtNombre.getText(),
@@ -341,7 +341,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
                 tabGeneral.setEnabledAt(1, false);
                 tabGeneral.setEnabledAt(0, true);
                 tabGeneral.setSelectedIndex(0);
-
+            
             } else {
                 this.mensajeError(respuesta);
             }
@@ -358,7 +358,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
             } else {
                 this.mensajeError(respuesta);
             }
-        }
+        }*/
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
