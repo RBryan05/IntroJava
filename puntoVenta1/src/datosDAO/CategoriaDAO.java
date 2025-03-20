@@ -246,4 +246,30 @@ public class CategoriaDAO implements CRUDGeneralInterface<Categoria> {
         }
         return idMayor;
     }
+    
+    public List<Categoria> SelectCategoria() {
+        List<Categoria> registros = new ArrayList();
+        try {
+            // Especificamos un ResultSet de tipo scrollable
+            ps = conectar.conectar().prepareStatement("SELECT id, nombre FROM categoria ORDER BY nombre ASC",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                registros.add(new Categoria(
+                        rs.getInt(1), rs.getString(2)
+                ));
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            ps = null;
+            rs = null;
+            conectar.desconectar();
+        }
+        return registros;
+    }
 }

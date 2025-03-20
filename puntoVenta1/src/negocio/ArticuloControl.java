@@ -6,10 +6,13 @@ package negocio;
 
 import datosDAO.ArticuloDAO;
 import entidades.Articulo;
+import datosDAO.CategoriaDAO;
+import entidades.Categoria;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class ArticuloControl {
 
     private final ArticuloDAO DATOS;
+    private final CategoriaDAO DATOSCAT;
     private Articulo obj;
     private DefaultTableModel tModel;
     public int registrosMostrados;
@@ -26,17 +30,42 @@ public class ArticuloControl {
     public ArticuloControl() {
         this.DATOS = new ArticuloDAO();
         this.obj = new Articulo();
+        this.DATOSCAT = new CategoriaDAO();
     }
 
-    public DefaultTableModel listar(String texto, int totalPorpagina, int numPagina) {
+    public DefaultComboBoxModel selectCategoria() {
+        DefaultComboBoxModel items = new DefaultComboBoxModel();
+        List<Categoria> lista = new ArrayList();
+        lista = DATOSCAT.SelectCategoria();
+        for (Categoria item : lista) {
+            items.addElement(new Categoria(item.getId(), item.getNombre()));
+        }
+        return items;
+    }
+
+    public DefaultTableModel listar(
+            String texto,
+            int totalPorpagina,
+            int numpagina
+    ) {
         List<Articulo> lista = new ArrayList();
-        lista.addAll(DATOS.getAll(texto, totalPorpagina, numPagina));
+        lista.addAll(DATOS.getAll(texto, totalPorpagina, numpagina));
         String[] titulos
-                = {"idArticulo", "categoriaId", "codigo", "nombre", "precioVenta", "stock", "descripcion", "imagen", "estado"};
+                = {"id",
+                    "categoria_id",
+                    "categoria",
+                    "codigo",
+                    "nombre",
+                    "precio_venta",
+                    "stock",
+                    "descripcion",
+                    "imagen",
+                    "estado"
+                };
         this.tModel = new DefaultTableModel(null, titulos);
 
         String estado;
-        String[] registro = new String[4];
+        String[] registro = new String[9];
         this.registrosMostrados = 0;
         for (Articulo item : lista) {
             if (item.isEstado()) {
@@ -47,13 +76,14 @@ public class ArticuloControl {
 
             registro[0] = Integer.toString(item.getIdArticulo());
             registro[1] = Integer.toString(item.getCategoriaId());
-            registro[2] = item.getCodigo();
-            registro[3] = item.getNombre();
-            registro[4] = Double.toString(item.getPrecioVenta());
-            registro[5] = Integer.toString(item.getStock());
-            registro[6] = item.getDescripcion();
-            registro[7] = item.getImagen();
-            registro[8] = Boolean.toString(item.isEstado());
+            registro[2] = item.getCategoriaNombre();
+            registro[3] = item.getCodigo();
+            registro[4] = item.getNombre();
+            registro[5] = Double.toString(item.getPrecioVenta());
+            registro[6] = Integer.toString(item.getStock());
+            registro[7] = item.getDescripcion();
+            registro[8] = item.getImagen();
+            registro[9] = Boolean.toString(item.isEstado());
             this.registrosMostrados = this.registrosMostrados + 1;
             this.tModel.addRow(registro);
         }

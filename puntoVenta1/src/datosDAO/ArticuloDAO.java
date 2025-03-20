@@ -32,51 +32,59 @@ public class ArticuloDAO implements CRUDPaginadoInterface<Articulo> {
 
     @Override
     public List<Articulo> getAll(String list, int totalPorPagina, int numPagina) {
-        List<Articulo> registros = new ArrayList<>();
-        try {
-            ps = conectar.conectar().prepareStatement(
-                    "SELECT "
-                    + "a.idArticulo, "
-                    + "a.categoria_id, "
-                    + "c.nombre AS categoria_nombre, "
-                    + "a.codigo, "
-                    + "a.nombre, "
-                    + "a.precio_venta, "
-                    + "a.stock, "
-                    + "a.descripcion, "
-                    + "a.imagen, "
-                    + "a.estado "
-                    + " FROM articulo a "
-                    + " INNER JOIN categoria c ON a.categoria_id = c.id "
-                    + " WHERE a.nombre LIKE ? "
-                    + " ORDER BY a.idArticulo ASC "
-                    + " LIMIT ?, ?"
-            );
-            ps.setString(1, "%" + list + "%");
-            ps.setInt(2, (numPagina - 1) * totalPorPagina);
-            ps.setInt(3, totalPorPagina);
+    List<Articulo> registros = new ArrayList<>();
+    try {
+        ps = conectar.conectar().prepareStatement(
+                "SELECT " +
+                "a.idArticulo, " +
+                "a.categoria_id, " +
+                "c.nombre AS categoria_nombre, " +
+                "a.codigo, " +
+                "a.nombre, " +
+                "a.precio_venta, " +
+                "a.stock, " +
+                "a.descripcion, " +
+                "a.imagen, " +
+                "a.estado " +
+                "FROM articulo a " +
+                "INNER JOIN categoria c " +
+                "ON a.categoria_id = c.id " +
+                "WHERE a.nombre LIKE ? " +
+                "ORDER BY a.idArticulo ASC " +
+                "LIMIT ?, ?"
+        );
 
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                registros.add(new Articulo(
-                        rs.getInt(1), // idArticulo
-                        rs.getInt(2), // categoria_id
-                        rs.getString(4), // codigo
-                        rs.getString(5), // nombre
-                        rs.getDouble(6), // precioVenta
-                        rs.getInt(7), // stock
-                        rs.getString(8), // descripcion
-                        rs.getString(9), // imagen
-                        rs.getBoolean(10) // estado
-                ));
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            cerrarRecursos();
+        ps.setString(1, "%" + list + "%");
+        ps.setInt(2, (numPagina - 1) * totalPorPagina);
+        ps.setInt(3, totalPorPagina);
+
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            registros.add(new Articulo(
+                    rs.getInt(1),  // idArticulo
+                    rs.getInt(2),  // categoria_id
+                    rs.getString(3), // nombre_categoria
+                    rs.getString(4), // codigo
+                    rs.getString(5), // nombre
+                    rs.getDouble(6), // precioVenta
+                    rs.getInt(7),  // stock
+                    rs.getString(8), // descripcion
+                    rs.getString(9), // imagen
+                    rs.getBoolean(10) // estado
+            ));
         }
-        return registros;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error en la consulta: " + e.getMessage());
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al cerrar recursos: " + ex.getMessage());
+        }
     }
+    return registros;
+}
 
     @Override
     public boolean insert(Articulo object) {

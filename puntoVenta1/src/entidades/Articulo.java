@@ -12,6 +12,15 @@ public class Articulo {
 
     private int idArticulo;
     private int categoriaId;
+    private String categoriaNombre;
+
+    public String getCategoriaNombre() {
+        return categoriaNombre;
+    }
+
+    public void setCategoriaNombre(String categoriaNombre) {
+        this.categoriaNombre = categoriaNombre;
+    }
     private String codigo;
     private String nombre;
     private double precioVenta;
@@ -23,14 +32,16 @@ public class Articulo {
     public Articulo() {
     }
 
-    public Articulo(int idArticulo, int categoriaId, String codigo, String nombre, double precioventa, int stock, String descripcion, String imagen, boolean estado) {
+    public Articulo(int idArticulo, int categoriaId, String categoriaNombre, String codigo, String nombre, double precioVenta, int stock, String descripcion, String imagen, boolean estado) {
         this.idArticulo = idArticulo;
         this.categoriaId = categoriaId;
+        this.categoriaNombre = categoriaNombre;
         this.codigo = codigo;
         this.nombre = nombre;
-        this.precioVenta = precioventa;
+        this.precioVenta = precioVenta;
         this.stock = stock;
         this.descripcion = descripcion;
+        this.imagen = imagen;
         this.estado = estado;
     }
 
@@ -108,6 +119,6 @@ public class Articulo {
 
     @Override
     public String toString() {
-        return "Articulo{" + "idArticulo=" + idArticulo + ", categoriaId=" + categoriaId + ", codigo=" + codigo + ", nombre=" + nombre + ", precioventa=" + precioVenta + ", stock=" + stock + ", descripcion=" + descripcion + ", imagen=" + imagen + ", estado=" + estado + '}';
+        return "Articulo{" + "idArticulo=" + idArticulo + ", categoriaId=" + categoriaId + ", categoriaNombre=" + categoriaNombre + ", codigo=" + codigo + ", nombre=" + nombre + ", precioVenta=" + precioVenta + ", stock=" + stock + ", descripcion=" + descripcion + ", imagen=" + imagen + ", estado=" + estado + '}';
     }
 }

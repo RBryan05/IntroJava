@@ -14,6 +14,11 @@ public class Categoria {
     private String descripcion;
     private boolean activo;
 
+    public Categoria(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public Categoria() {
     }
 
@@ -58,6 +63,7 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" + "id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", activo=" + activo + '}';
+        return nombre;
     }
+    
 }

@@ -5,6 +5,7 @@
 package presentacion;
 
 import java.util.HashSet;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import negocio.CategoriaControl;
 import javax.swing.table.TableRowSorter;
@@ -30,6 +31,12 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
         tabGeneral.setEnabledAt(1, false);
         this.accion = ("Guardar");
         this.txtId.setEnabled(false);
+        this.CargarCategoria();
+    }
+    
+    private void CargarCategoria(){
+        DefaultComboBoxModel items = this.CONTROL.selectCategoria();
+        cboCategoria.setModel(items);
     }
 
     private void listar(String texto) {
@@ -98,6 +105,8 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        cboCategoria = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -231,6 +240,8 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
 
         jLabel6.setText("ID:");
 
+        jLabel7.setText("Categoria(*):");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -247,23 +258,32 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
                                 .addComponent(btnCancelar))
                             .addComponent(txtDescripcion)
-                            .addComponent(chbActivo)
                             .addComponent(txtId)
-                            .addComponent(txtNombre))))
+                            .addComponent(txtNombre)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chbActivo)
+                                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(97, 97, 97))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
@@ -285,7 +305,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnCancelar))
-                .addGap(55, 55, 55))
+                .addGap(27, 27, 27))
         );
 
         tabGeneral.addTab("Mantenimiento", jPanel2);
@@ -311,7 +331,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (txtNombre.getText().length() == 0) {
+        /*if (txtNombre.getText().length() == 0) {
             JOptionPane.showMessageDialog(this, "Nombre es obligatorio", "Systema", JOptionPane.WARNING_MESSAGE);
             txtNombre.requestFocus();
             return;
@@ -321,9 +341,9 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Un maximo de 30 caracteres", "Systema", JOptionPane.WARNING_MESSAGE);
             txtNombre.requestFocus();
             return;
-        }
+        }*/
 
-        String respuesta;
+        ///String respuesta;
 
         /*if (this.accion.equals("editar")) {
             respuesta = this.CONTROL.update(
@@ -458,6 +478,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JComboBox<String> cboCategoria;
     private javax.swing.JCheckBox chbActivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -465,6 +486,7 @@ public class FrmArticulo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
